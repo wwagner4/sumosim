@@ -5,7 +5,7 @@ import net.entelijan.util._
 import doctus.core._
 import doctus.core.color._
 
-case class AffinePoliPoint(x: Int, y: Int) extends DoctusPoint {
+case class AffinePoliPoint(x: Double, y: Double) extends DoctusPoint {
   import scala.math._
   def scale(dx: Double, dy: Double): AffinePoliPoint = AffinePoliPoint((x * dx).toInt, (y * dy).toInt)
   def translate(dx: Double, dy: Double): AffinePoliPoint = AffinePoliPoint((x + dx).toInt, (y + dy).toInt)
