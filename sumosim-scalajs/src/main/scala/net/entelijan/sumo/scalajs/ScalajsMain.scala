@@ -31,7 +31,7 @@ object ScalajsMain {
 
     val em = DoctusElementEventManager
 
-    new RotatingVsForwardBackwardExample(dcanvas, None, sc).start
+    new RotatingVsForwardBackwardExample(dcanvas, None, sc).start()
     // new CleverVsForwardBackwardExample(dcanvas, None, sc).start
   }
 

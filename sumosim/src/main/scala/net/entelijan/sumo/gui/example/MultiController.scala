@@ -12,6 +12,6 @@ case class MultiController(a: DoctusClickable, b: DoctusClickable,
                             sched: DoctusScheduler) {
   a.onClick(() => new ManualVsStandstillExample(canv, comp, None, sched).start())
   b.onClick(() => new ManualVsForwardBackwardExample(canv, comp, None, sched).start())
-  c.onClick(() => new CleverVsForwardBackwardExample(canv, None, sched).start)
-  d.onClick(() => new RotatingVsForwardBackwardExample(canv, None, sched).start)
+  c.onClick(() => new CleverVsForwardBackwardExample(canv, None, sched).start())
+  d.onClick(() => new RotatingVsForwardBackwardExample(canv, None, sched).start())
 }
