@@ -5,7 +5,7 @@ Simulationenvironment for sumo robots
 
 
 ## Prerequisites
-Before you can use sumosim you have to checkout the sbt project doctus at https://github.com/wwagner4/doctus. Build doctus using sbt publish-local before you build sumosim
+Before you can use sumosim you have to checkout the sbt project doctus at https://github.com/wwagner4/doctus. Build doctus using 'sbt publish-local' before you build sumosim
 
 ## Sbt
 To build sbt use 'sbt test'
