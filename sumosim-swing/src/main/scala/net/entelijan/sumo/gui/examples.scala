@@ -74,10 +74,10 @@ object ManualVsForwardBackwardButtonsApp extends App {
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
 
-  val bup = new Label with DoctusActivatableReactor { text = "UP" }
-  val bdown = new Label with DoctusActivatableReactor { text = "DOWN" }
-  val bleft = new Label with DoctusActivatableReactor { text = "LEFT" }
-  val bright = new Label with DoctusActivatableReactor { text = "RIGHT" }
+  val bup = new Label with DoctusReactor { text = "UP" }
+  val bdown = new Label with DoctusReactor { text = "DOWN" }
+  val bleft = new Label with DoctusReactor { text = "LEFT" }
+  val bright = new Label with DoctusReactor { text = "RIGHT" }
 
   val d = {
     val up = DoctusActivatableSwing(bup)
@@ -100,10 +100,10 @@ object ManualVsStandstillButtonsApp extends App {
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
 
-  val bup = new Label with DoctusActivatableReactor { text = "UP" }
-  val bdown = new Label with DoctusActivatableReactor { text = "DOWN" }
-  val bleft = new Label with DoctusActivatableReactor { text = "LEFT" }
-  val bright = new Label with DoctusActivatableReactor { text = "RIGHT" }
+  val bup = new Label with DoctusReactor { text = "UP" }
+  val bdown = new Label with DoctusReactor { text = "DOWN" }
+  val bleft = new Label with DoctusReactor { text = "LEFT" }
+  val bright = new Label with DoctusReactor { text = "RIGHT" }
 
   val d = {
     val up = DoctusActivatableSwing(bup)
