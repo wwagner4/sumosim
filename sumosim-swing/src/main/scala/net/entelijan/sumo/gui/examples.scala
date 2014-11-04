@@ -1,11 +1,11 @@
 package net.entelijan.sumo.gui
 
-import scala.swing._
 import doctus.swing._
 import net.entelijan.sumo.gui.example.{CleverVsForwardBackwardExample, ManualVsForwardBackwardExample, ManualVsStandstillExample, RotatingVsForwardBackwardExample}
 import net.entelijan.sumo.robot._
 import net.entelijan.sumo.sound.SoundDesign00
 
+import scala.swing._
 import scala.swing.event._
 
 object RotatingVsForwardBackwardApp extends App {
@@ -74,10 +74,10 @@ object ManualVsForwardBackwardButtonsApp extends App {
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
 
-  val bup = new Label with DoctusReactor { text = "UP" }
-  val bdown = new Label with DoctusReactor { text = "DOWN" }
-  val bleft = new Label with DoctusReactor { text = "LEFT" }
-  val bright = new Label with DoctusReactor { text = "RIGHT" }
+  val bup = new Label { text = "UP" }
+  val bdown = new Label { text = "DOWN" }
+  val bleft = new Label { text = "LEFT" }
+  val bright = new Label  {text = "RIGHT" }
 
   val d = {
     val up = DoctusActivatableSwing(bup)
@@ -100,10 +100,10 @@ object ManualVsStandstillButtonsApp extends App {
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
 
-  val bup = new Label with DoctusReactor { text = "UP" }
-  val bdown = new Label with DoctusReactor { text = "DOWN" }
-  val bleft = new Label with DoctusReactor { text = "LEFT" }
-  val bright = new Label with DoctusReactor { text = "RIGHT" }
+  val bup = new Label { text = "UP" }
+  val bdown = new Label { text = "DOWN" }
+  val bleft = new Label { text = "LEFT" }
+  val bright = new Label { text = "RIGHT" }
 
   val d = {
     val up = DoctusActivatableSwing(bup)
