@@ -49,11 +49,7 @@ object MultiApp extends App {
     val down = DoctusActivatableSwingKey(panel, Key.Down)
     val left = DoctusActivatableSwingKey(panel, Key.Left)
     val right = DoctusActivatableSwingKey(panel, Key.Right)
-    new UpDownLeftRight(
-      ControlerValue(up, sl),
-      ControlerValue(down, sl),
-      ControlerValue(left, sl),
-      ControlerValue(right, sl))
+    UpDownLeftRight(up, down, left, right, sl)
   }
 
   // Start the controller
@@ -84,11 +80,7 @@ object ManualVsForwardBackwardApp extends App {
     val down = DoctusActivatableSwingKey(p, Key.Down)
     val left = DoctusActivatableSwingKey(p, Key.Left)
     val right = DoctusActivatableSwingKey(p, Key.Right)
-    new UpDownLeftRight(
-      ControlerValue(up, sl),
-      ControlerValue(down, sl),
-      ControlerValue(left, sl),
-      ControlerValue(right, sl))
+    UpDownLeftRight(up, down, left, right, sl)
   }
   val ex = new ManualVsForwardBackwardExample(c, d, Some(sd), sl)
   new SumoApp(ex, p)
@@ -105,11 +97,7 @@ object ManualVsStandstillApp extends App {
     val down = DoctusActivatableSwingKey(p, Key.Down)
     val left = DoctusActivatableSwingKey(p, Key.Left)
     val right = DoctusActivatableSwingKey(p, Key.Right)
-    new UpDownLeftRight(
-      ControlerValue(up, sl),
-      ControlerValue(down, sl),
-      ControlerValue(left, sl),
-      ControlerValue(right, sl))
+    UpDownLeftRight(up, down, left, right, sl)
   }
   val ex = new ManualVsStandstillExample(c, d, Some(sd), sl)
   new SumoApp(ex, p)
@@ -139,11 +127,7 @@ object ManualVsForwardBackwardButtonsApp extends App {
     val down = DoctusActivatableSwing(bdown)
     val left = DoctusActivatableSwing(bleft)
     val right = DoctusActivatableSwing(bright)
-    new UpDownLeftRight(
-      ControlerValue(up, sl),
-      ControlerValue(down, sl),
-      ControlerValue(left, sl),
-      ControlerValue(right, sl))
+    UpDownLeftRight(up, down, left, right, sl)
   }
   val ex = new ManualVsForwardBackwardExample(c, d, Some(sd), sl)
   new SumoButtonsApp(ex, p, bup, bdown, bleft, bright)
@@ -173,11 +157,7 @@ object ManualVsStandstillButtonsApp extends App {
     val down = DoctusActivatableSwing(bdown)
     val left = DoctusActivatableSwing(bleft)
     val right = DoctusActivatableSwing(bright)
-    new UpDownLeftRight(
-      ControlerValue(up, sl),
-      ControlerValue(down, sl),
-      ControlerValue(left, sl),
-      ControlerValue(right, sl))
+    UpDownLeftRight(up, down, left, right, sl)
   }
   val ex = new ManualVsStandstillExample(c, d, Some(sd), sl)
   new SumoButtonsApp(ex, p, bup, bdown, bleft, bright)

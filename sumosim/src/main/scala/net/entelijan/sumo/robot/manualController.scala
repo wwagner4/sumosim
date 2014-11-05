@@ -3,15 +3,20 @@ package net.entelijan.sumo.robot
 import doctus.core._
 
 
-// TODO Implement as trait
+case class UpDownLeftRight(
+                            up: DoctusActivatable,
+                            down: DoctusActivatable,
+                            left: DoctusActivatable,
+                            right: DoctusActivatable,
+                            sched: DoctusScheduler) {
+  def upControlerValue = ControlerValue(up, sched)
+  def downControlerValue = ControlerValue(down, sched)
+  def leftControlerValue = ControlerValue(left, sched)
+  def rightControlerValue = ControlerValue(right, sched)
+}
+
 case class ControlerValue(activatable: DoctusActivatable, sched: DoctusScheduler)
 
-// TODO Implement as trait
-case class UpDownLeftRight(
-  up: ControlerValue,
-  down: ControlerValue,
-  left: ControlerValue,
-  right: ControlerValue)
 
 class ManualController(val name: String, comp: UpDownLeftRight) extends DiffDriveController[NullSensor] {
 
@@ -61,25 +66,25 @@ class ManualController(val name: String, comp: UpDownLeftRight) extends DiffDriv
   }
 
   val leftKeyListener = new KeyListener {
-    def sched = comp.left.sched
+    def sched = comp.leftControlerValue.sched
     def valueChanged(value: Double) {
       left = value
     }
   }
   val rightKeyListener = new KeyListener {
-    def sched = comp.right.sched
+    def sched = comp.rightControlerValue.sched
     def valueChanged(value: Double) {
       right = value
     }
   }
   val forwKeyListener = new KeyListener {
-    def sched = comp.up.sched
+    def sched = comp.upControlerValue.sched
     def valueChanged(value: Double) {
       forw = value
     }
   }
   val backwKeyListener = new KeyListener {
-    def sched = comp.down.sched
+    def sched = comp.downControlerValue.sched
     def valueChanged(value: Double) {
       backw = value
     }
@@ -87,28 +92,28 @@ class ManualController(val name: String, comp: UpDownLeftRight) extends DiffDriv
 
   val dbg = false
 
-  comp.left.activatable.onActivated { () =>
+  comp.leftControlerValue.activatable.onActivated { () =>
     if (dbg) println("## l +")
     leftKeyListener.startIncreaseValue() }
-  comp.left.activatable.onDeactivated { () =>
+  comp.leftControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## l -")
     leftKeyListener.startDecreaseValue() }
-  comp.right.activatable.onActivated { () =>
+  comp.rightControlerValue.activatable.onActivated { () =>
     if (dbg) println("## r +")
     rightKeyListener.startIncreaseValue() }
-  comp.right.activatable.onDeactivated { () =>
+  comp.rightControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## r -")
     rightKeyListener.startDecreaseValue() }
-  comp.up.activatable.onActivated { () =>
+  comp.upControlerValue.activatable.onActivated { () =>
     if (dbg) println("## f +")
     forwKeyListener.startIncreaseValue() }
-  comp.up.activatable.onDeactivated { () =>
+  comp.upControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## f -")
     forwKeyListener.startDecreaseValue() }
-  comp.down.activatable.onActivated { () =>
+  comp.downControlerValue.activatable.onActivated { () =>
     if (dbg) println("## b +")
     backwKeyListener.startIncreaseValue() }
-  comp.down.activatable.onDeactivated { () =>
+  comp.downControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## b -")
     backwKeyListener.startDecreaseValue() }
 

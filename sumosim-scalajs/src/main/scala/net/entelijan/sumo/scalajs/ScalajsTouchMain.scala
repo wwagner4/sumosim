@@ -31,18 +31,11 @@ object ScalajsTouchMain {
     val left = DoctusActivatableScalajsTouchRegion(HTMLElementOffsetProvider(contrCombi), DoctusRectImpl(0, 0, 66, 200))
     val right = DoctusActivatableScalajsTouchRegion(HTMLElementOffsetProvider(contrCombi), DoctusRectImpl(133, 0, 66, 200))
 
-
     val em = DoctusElementEventManager
     // Register the touch elements
     ScalajsTouchElem(List(dup, down, left, right), em)
 
-    val d = {
-      new UpDownLeftRight(
-        ControlerValue(dup, DoctusSchedulerScalajs),
-        ControlerValue(down, DoctusSchedulerScalajs),
-        ControlerValue(left, DoctusSchedulerScalajs),
-        ControlerValue(right, DoctusSchedulerScalajs))
-    }
+    val d = UpDownLeftRight(dup, down, left, right, DoctusSchedulerScalajs)
 
     println("before call of controller")
     new ManualVsStandstillExample(dcanvas, d, None, sc).start()

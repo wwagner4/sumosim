@@ -24,7 +24,7 @@ object ScalajsMultiMain {
     // GUI Components form the HTML-Page
     val canvas: HTMLCanvasElement = dom.document.getElementById("canvas").asInstanceOf[HTMLCanvasElement]
     val dcanvas: DoctusCanvas = DoctusCanvasScalajs(canvas)
-    val dup= DoctusActivatableScalajsKey(dom.document.body, KeyCode.up)
+    val dup = DoctusActivatableScalajsKey(dom.document.body, KeyCode.up)
     val ddown = DoctusActivatableScalajsKey(dom.document.body, KeyCode.down)
     val dleft = DoctusActivatableScalajsKey(dom.document.body, KeyCode.left)
     val dright = DoctusActivatableScalajsKey(dom.document.body, KeyCode.right)
@@ -34,10 +34,8 @@ object ScalajsMultiMain {
     val dc = DoctusClickableScalajs(dom.document.getElementById("c"))
     val dd = DoctusClickableScalajs(dom.document.getElementById("d"))
 
-    val d =
-      new UpDownLeftRight(ControlerValue(dup, dsc), ControlerValue(ddown, dsc),
-        ControlerValue(dleft, dsc), ControlerValue(dright, dsc))
-      MultiController(da, db, dc, dd, dcanvas, d, dsc)
+    val d = new UpDownLeftRight(dup, ddown, dleft, dright, dsc)
+    MultiController(da, db, dc, dd, dcanvas, d, dsc)
   }
 
 }

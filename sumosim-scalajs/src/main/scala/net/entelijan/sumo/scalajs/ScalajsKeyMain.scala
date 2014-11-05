@@ -30,12 +30,7 @@ object ScalajsKeyMain {
     val dleft = DoctusActivatableScalajsKey(dom.document.body, KeyCode.left)
     val dright = DoctusActivatableScalajsKey(dom.document.body, KeyCode.right)
 
-    val d =
-      new UpDownLeftRight(
-        ControlerValue(dup, dsc),
-        ControlerValue(ddown, dsc),
-        ControlerValue(dleft, dsc),
-        ControlerValue(dright, dsc))
+    val d = UpDownLeftRight(dup, ddown, dleft, dright, dsc)
 
     // new ManualVsForwardBackwardExample(dcanvas, d, None, dsc).start
     new ManualVsStandstillExample(dcanvas, d, None, dsc).start()
