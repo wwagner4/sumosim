@@ -5,6 +5,7 @@ import doctus.core._
 
 // TODO Implement as trait
 case class ControlerValue(activatable: DoctusActivatable, sched: DoctusScheduler)
+
 // TODO Implement as trait
 case class UpDownLeftRight(
   up: ControlerValue,

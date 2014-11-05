@@ -2,7 +2,7 @@ package net.entelijan.sumo.scalajs
 
 import doctus.core.DoctusCanvas
 import doctus.scalajs._
-import net.entelijan.sumo.gui.example.ManualVsStandstillExample
+import net.entelijan.sumo.gui.example.{MultiController, ManualVsStandstillExample}
 import net.entelijan.sumo.robot.{ControlerValue, UpDownLeftRight}
 import org.scalajs.dom
 import org.scalajs.dom.HTMLCanvasElement
@@ -37,9 +37,7 @@ object ScalajsMultiMain {
     val d =
       new UpDownLeftRight(ControlerValue(dup, dsc), ControlerValue(ddown, dsc),
         ControlerValue(dleft, dsc), ControlerValue(dright, dsc))
-
-    // new ManualVsForwardBackwardExample(dcanvas, d, None, dsc).start
-    new ManualVsStandstillExample(dcanvas, d, None, dsc).start()
+      MultiController(da, db, dc, dd, dcanvas, d, dsc)
   }
 
 }
