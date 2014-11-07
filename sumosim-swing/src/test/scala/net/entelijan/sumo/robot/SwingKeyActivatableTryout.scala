@@ -15,7 +15,7 @@ object SwingKeyActivatableTryout extends App {
     
   }
 
-  mf.title = "Manual"
+  mf.title = "DoctusActivatableSwingKey"
   mf.size = new Dimension(200, 100)
   mf.open()
 }
