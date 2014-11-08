@@ -54,7 +54,6 @@ object SumosimBuild extends Build {
         Seq(
           fork := true,
           libraryDependencies ++= Seq(
-            "org.scala-lang" % "scala-swing" % D.scalaVersion,
             "net.entelijan" %% "doctus-swing" % D.doctusVersion))
 
     lazy val sumosimScalajsSettings =

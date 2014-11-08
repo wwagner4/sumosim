@@ -10,7 +10,8 @@ case class MultiController(a: DoctusClickable, b: DoctusClickable,
                            c: DoctusClickable, d: DoctusClickable,
                            canv: DoctusCanvas, comp: UpDownLeftRight,
                            sched: DoctusScheduler) {
-  new CleverVsForwardBackwardExample(canv, None, sched).start()
+
+  new ManualVsForwardBackwardExample(canv, comp, None, sched).start()
   a.onClick(() => {
     println("clicked A")
     new ManualVsStandstillExample(canv, comp, None, sched).start()

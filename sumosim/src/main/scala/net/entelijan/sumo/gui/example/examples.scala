@@ -48,8 +48,8 @@ class CleverVsForwardBackwardExample(val canv: DoctusCanvas, val soundDevice: Op
   }
 
   val univ = {
-    // R2DUniverse.createRoboUniverse(0.5)
-    SimpleUniverse.createDefaultUniverse(canv)
+    R2DUniverse.createSumosUniverse(canv, 1.0)
+    //SimpleUniverse.createDefaultUniverse(canv)
   }
 
   sim.addUpdatable(univ)
