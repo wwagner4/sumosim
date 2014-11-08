@@ -1,6 +1,5 @@
-package net.entelijan.sumo.render
+package net.entelijan.sumo.gui.renderer
 
-import net.entelijan.sumo.gui.renderer.AffinePoliPoint
 import org.scalatest.FunSuite
 
 class AffineSuite extends FunSuite {
