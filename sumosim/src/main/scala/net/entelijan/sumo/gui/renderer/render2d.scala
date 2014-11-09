@@ -25,10 +25,10 @@ object R2DUniverse {
 
 }
 
-class R2DUniverse(canvas: DoctusCanvas, initialScaleFactor: Double, val provider1: ImageProvider, val provider2: ImageProvider)
+class R2DUniverse(canvas: DoctusCanvas, fillFactor: Double, val provider1: ImageProvider, val provider2: ImageProvider)
   extends RenderUniverse(canvas) {
 
-  var scaleFactor = initialScaleFactor
+  var scaleFactor = 1.0
   var robots: Seq[R2DRobot] = Seq()
   var info = "Initial Info String"
 
@@ -52,8 +52,7 @@ class R2DUniverse(canvas: DoctusCanvas, initialScaleFactor: Double, val provider
     val cw = canvas.width.toDouble
     val ch = canvas.height.toDouble
     val ratio = ch / cw
-    val fillFact = 0.94
-    scaleFactor = fillFact * (if (ratio < 0.7) ch / (810 * 0.7) else cw / 810)
+    scaleFactor = fillFactor * (if (ratio < 0.7) ch / (810 * 0.7) else cw / 810)
 
     def calculateScreenPosition(pos: Point2) = {
       // 0.7 in respect to the pad.png
