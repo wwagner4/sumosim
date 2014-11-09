@@ -1,6 +1,6 @@
 package net.entelijan.sumo.gui
 
-import java.awt.event.KeyEvent
+import java.awt.event._
 import java.awt.{Dimension, FlowLayout, BorderLayout}
 import javax.swing.{JFrame, JPanel, JButton}
 
@@ -29,50 +29,53 @@ object CleverVsForwardBackwardApp extends App {
 
 object MultiApp extends App {
   // Create components
-  val p = new DoctusPanel
+  val doctPanel = new DoctusPanel
   val ba = new JButton("A")
   val bb = new JButton("B")
   val bc = new JButton("C")
   val bd = new JButton("D")
 
   // Layout components
-  val panel = new JPanel()
-  panel.setLayout(new BorderLayout())
 
-  panel.add(p, BorderLayout.CENTER)
-  val bp = new JPanel()
-  bp.setLayout(new FlowLayout())
-  bp.add(ba)
-  bp.add(bb)
-  bp.add(bc)
-  bp.add(bd)
-  panel.add(bp, BorderLayout.SOUTH)
 
-  // Wrap components with DoctusClasses
-  val c = new DoctusCanvasSwing(p)
-  val sl = DoctusSchedulerSwing
-  val d = {
-    val up = DoctusActivatableSwingKey(panel, KeyEvent.VK_UP)
-    val down = DoctusActivatableSwingKey(panel, KeyEvent.VK_DOWN)
-    val left = DoctusActivatableSwingKey(panel, KeyEvent.VK_LEFT)
-    val right = DoctusActivatableSwingKey(panel, KeyEvent.VK_RIGHT)
-    UpDownLeftRight(up, down, left, right, sl)
-  }
+  val buttonsPanel = new JPanel()
+  buttonsPanel.setLayout(new FlowLayout())
+  buttonsPanel.add(ba)
+  buttonsPanel.add(bb)
+  buttonsPanel.add(bc)
+  buttonsPanel.add(bd)
 
-  // Start the controller
-  MultiController(DoctusClickableSwing(ba),
-    DoctusClickableSwing(bb),
-    DoctusClickableSwing(bc),
-    DoctusClickableSwing(bd),
-    c, d, sl)
+  val contPanel = new JPanel()
+  contPanel.setLayout(new BorderLayout())
+  contPanel.add(doctPanel, BorderLayout.CENTER)
+  contPanel.add(buttonsPanel, BorderLayout.SOUTH)
 
   // Open main frame
   val f = new JFrame()
   f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
   f.setTitle("Sumosim Multi")
   f.setSize(new Dimension(800, 600))
-  f.setContentPane(panel)
+  f.setContentPane(contPanel)
   f.setVisible(true)
+
+  // Wrap components with DoctusClasses
+  val canv = new DoctusCanvasSwing(doctPanel)
+  val sl = DoctusSchedulerSwing
+  val udlr = {
+    val up = DoctusActivatableSwingKey(doctPanel, KeyEvent.VK_UP)
+    val down = DoctusActivatableSwingKey(doctPanel, KeyEvent.VK_DOWN)
+    val left = DoctusActivatableSwingKey(doctPanel, KeyEvent.VK_LEFT)
+    val right = DoctusActivatableSwingKey(doctPanel, KeyEvent.VK_RIGHT)
+    UpDownLeftRight(up, down, left, right, sl)
+  }
+  val ca = DoctusClickableSwing(ba)
+  val cb = DoctusClickableSwing(bb)
+  val cc = DoctusClickableSwing(bc)
+  val cd = DoctusClickableSwing(bd)
+
+  // Start the controller
+  MultiController(ca, cb, cc, cd, canv, udlr, sl)
+
 }
 
 object ManualVsForwardBackwardApp extends App {
