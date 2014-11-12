@@ -1,6 +1,7 @@
 package net.entelijan.sumo.gui.example
 
-import doctus.core.{DoctusClickable, DoctusActivatable, DoctusCanvas, DoctusScheduler}
+import doctus.core.DoctusScheduler.Stopper
+import doctus.core.{DoctusCanvas, DoctusClickable, DoctusScheduler}
 import net.entelijan.sumo.robot.UpDownLeftRight
 
 /**
@@ -10,22 +11,49 @@ case class MultiController(a: DoctusClickable, b: DoctusClickable,
                            c: DoctusClickable, d: DoctusClickable,
                            canv: DoctusCanvas, comp: UpDownLeftRight,
                            sched: DoctusScheduler) {
+  
+  val ssched = StopperCollectionScheduler(sched)
 
-  new ManualVsForwardBackwardExample(canv, comp, None, sched).start()
+  new CleverVsForwardBackwardExample(canv, None, ssched).start()
   a.onClick(() => {
-    println("clicked A")
-    new ManualVsStandstillExample(canv, comp, None, sched).start()
+    ssched.stopAll()
+    new ManualVsStandstillExample(canv, comp, None, ssched).start()
   })
   b.onClick(() => {
-    println("clicked B")
-    new ManualVsForwardBackwardExample(canv, comp, None, sched).start()
+    ssched.stopAll()
+    new ManualVsForwardBackwardExample(canv, comp, None, ssched).start()
   })
   c.onClick(() => {
-    println("clicked C")
-    new CleverVsForwardBackwardExample(canv, None, sched).start()
+    ssched.stopAll()
+    new CleverVsForwardBackwardExample(canv, None, ssched).start()
   })
   d.onClick(() => {
-    println("clicked D")
-    new RotatingVsForwardBackwardExample(canv, None, sched).start()
+    ssched.stopAll()
+    new RotatingVsForwardBackwardExample(canv, None, ssched).start()
   })
 }
+
+/**
+ * Collects the stoppers of all scheduler threads created by the scheduler
+ */
+case class StopperCollectionScheduler(sched: DoctusScheduler) extends DoctusScheduler {
+
+  private var stoppers = List.empty[DoctusScheduler.Stopper]
+
+  override def start(f: () => Unit, duration: Int): Stopper = {
+    synchronized {
+      val stopper = sched.start(f, duration)
+      stoppers ::= stopper
+      stopper
+    }
+  }
+
+  /**
+   * Stops all schedulers threads
+   */
+  def stopAll(): Unit = {
+    stoppers.foreach(_.stop)
+    stoppers = List.empty[DoctusScheduler.Stopper]
+  }
+}
+
