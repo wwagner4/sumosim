@@ -21,7 +21,7 @@ class RotatingVsForwardBackwardExample(val canv: DoctusCanvas, val soundDevice: 
   }
 
   val univ = {
-    // R2DUniverse.createRoboUniverse(0.5)
+    // R2DUniverse.createRoboUniverse(0.8)
     SimpleUniverse.createDefaultUniverse(canv)
   }
 
@@ -48,7 +48,7 @@ class CleverVsForwardBackwardExample(val canv: DoctusCanvas, val soundDevice: Op
   }
 
   val univ = {
-    R2DUniverse.createSumosUniverse(canv, 0.6)
+    R2DUniverse.createSumosUniverse(canv, 0.8)
     //SimpleUniverse.createDefaultUniverse(canv)
   }
 
@@ -82,7 +82,7 @@ class ManualVsForwardBackwardExample(val canv: DoctusCanvas, comp: UpDownLeftRig
   }
 
   val univ = {
-    R2DUniverse.createRoboUniverse(canv, 0.5)
+    R2DUniverse.createRoboUniverse(canv, 0.8)
     // SimpleUniverse.createDefaultUniverse(canv)
     // R2DUniverse.createSumosUniverse(canv, 0.5)
   }
@@ -117,7 +117,7 @@ class ManualVsStandstillExample(val canv: DoctusCanvas, comp: UpDownLeftRight, v
   }
 
   val univ = {
-    R2DUniverse.createRoboUniverse(canv, 0.5)
+    R2DUniverse.createRoboUniverse(canv, 0.8)
     // SimpleUniverse.createDefaultUniverse(canv)
   }
 
