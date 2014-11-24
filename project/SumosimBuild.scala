@@ -22,7 +22,7 @@ object SumosimBuild extends Build {
 
     val scalaMainVersion = "2.10"
     val scalaVersion = s"$scalaMainVersion.4"
-    val doctusVersion = "1.0.2-SNAPSHOT"
+    val doctusVersion = "1.0.2"
 
   }
 
