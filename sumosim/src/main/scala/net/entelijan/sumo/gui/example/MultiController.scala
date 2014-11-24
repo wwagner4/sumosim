@@ -17,19 +17,19 @@ case class MultiController(a: DoctusClickable, b: DoctusClickable,
   new CleverVsForwardBackwardExample(canv, None, ssched).start()
   a.onClick(() => {
     ssched.stopAll()
-    new ManualVsStandstillExample(canv, comp, None, ssched).start()
+    new CleverVsCleverExample(canv, None, ssched).start()
   })
   b.onClick(() => {
     ssched.stopAll()
-    new ManualVsForwardBackwardExample(canv, comp, None, ssched).start()
+    new RotatingVsForwardBackwardExample(canv, None, ssched).start()
   })
   c.onClick(() => {
     ssched.stopAll()
-    new CleverVsForwardBackwardExample(canv, None, ssched).start()
+    new ManualVsStandstillExample(canv, comp, None, ssched).start()
   })
   d.onClick(() => {
     ssched.stopAll()
-    new RotatingVsForwardBackwardExample(canv, None, ssched).start()
+    new ManualVsForwardBackwardExample(canv, comp, None, ssched).start()
   })
 }
 

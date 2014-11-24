@@ -59,6 +59,34 @@ class CleverVsForwardBackwardExample(val canv: DoctusCanvas, val soundDevice: Op
   
 }
 
+class CleverVsCleverExample(val canv: DoctusCanvas, val soundDevice: Option[Updatable], 
+    scheduler: DoctusScheduler) extends SumoGuiExample {
+
+  def name = "Forward/Backward vs Clever"
+  val sim = {
+    val c1 = new Clever01Controller("Clever 1")
+    val r1 = new CombiSensorDiffDriveRobot(c1)
+
+    val c2 = new Clever01Controller("Clever 2")
+    val r2 = new CombiSensorDiffDriveRobot(c2) 
+
+    r2.opponent = r1
+    r1.opponent = r2
+    new DemoSumoSim(r1, r2, 30, scheduler)
+  }
+
+  val univ = {
+    R2DUniverse.createSumosUniverse(canv, 0.8)
+    //SimpleUniverse.createDefaultUniverse(canv)
+  }
+
+  sim.addUpdatable(univ)
+  soundDevice.foreach(sim.addUpdatable)
+
+  def start(): Unit = sim.startRunning()
+  
+}
+
 class ManualVsForwardBackwardExample(val canv: DoctusCanvas, comp: UpDownLeftRight, val soundDevice: Option[Updatable], scheduler: DoctusScheduler)
   extends SumoGuiExample {
 

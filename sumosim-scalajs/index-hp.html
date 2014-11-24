@@ -1,0 +1,76 @@
+
+<html>
+<head>
+<title>sumo-sim</title>
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<style type="text/css">
+body {
+	background-color: black;
+	color: white;
+	font-family: monospace;
+	font-size: large;
+	margin: 30px;
+	text-align: center;
+}
+
+a:link {
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+h1 {
+	border-bottom-style: solid;
+	border-bottom-color: white;
+	border-bottom-width: 1px
+}
+#middle {
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+</style>
+<script type="text/javascript">
+	// Set the size of the canvas to the size of the enclosing tag 
+	$(document).ready(function() {
+		var middle = document.getElementById("middle");
+		var canvas = document.getElementById("canvas");
+		canvas.width = middle.offsetWidth;
+		canvas.height = middle.offsetWidth * 0.7;
+	});
+</script>
+</head>
+<body>
+	<h1>sumo-sim</h1>
+	<div id="middle">
+	<p>
+		sumo-sim is a simulation environment for <a
+			href="http://en.wikipedia.org/wiki/Robot-sumo">robot sumo</a>
+	</p>
+	<p>
+		for more details visit the <a href="http://sumosim.blogspot.com/">sumo-sim
+			blog</a>
+	</p>
+	<p>
+		<canvas id="canvas">Canvas tag not supported</canvas>
+	</p>
+	<p>examples</p>
+	<p id="links">
+		<a id="a" href="#">A</a> <a id="b" href="#">B</a> <a id="c"
+			href="#">C</a> <a id="d" href="#">D</a>
+	</p>
+
+	<p>for examples C and D you must use the arrow keys to control the red robot</p>
+	</div>
+
+
+	<script type="text/javascript" src="target/scala-2.10/sumosim-scalajs-fastopt.js"></script>
+
+	<script type="text/javascript">
+	ScalajsMultiMain().main();
+	</script>
+</body>
+</html>
