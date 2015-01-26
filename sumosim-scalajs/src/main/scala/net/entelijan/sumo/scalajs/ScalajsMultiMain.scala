@@ -12,7 +12,7 @@ import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.annotation.JSExport
 
-@JSExport
+@JSExport(name="ScalajsMultiMain")
 object ScalajsMultiMain {
 
   // Comes here on every refresh (update)

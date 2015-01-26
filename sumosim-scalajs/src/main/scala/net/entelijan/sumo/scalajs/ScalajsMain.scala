@@ -10,7 +10,7 @@ import org.scalajs.dom.{HTMLCanvasElement, HTMLDivElement}
 
 import scala.scalajs.js.annotation.JSExport
 
-@JSExport
+@JSExport(name="ScalajsMain")
 object ScalajsMain {
 
   // Comes here on every refresh (update)

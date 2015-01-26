@@ -20,9 +20,9 @@ object SumosimBuild extends Build {
 
     val version = "1.0-SNAPSHOT"
 
-    val scalaMainVersion = "2.10"
+    val scalaMainVersion = "2.11"
     val scalaVersion = s"$scalaMainVersion.4"
-    val doctusVersion = "1.0.2"
+    val doctusVersion = "1.0.3-SNAPSHOT"
 
   }
 
@@ -47,7 +47,7 @@ object SumosimBuild extends Build {
         Seq(
           libraryDependencies ++= Seq(
             "net.entelijan" %%% "doctus-core" % D.doctusVersion,
-            "org.scalatest" % s"scalatest_${D.scalaMainVersion}" % "2.1.0"))
+			"org.scalatest" %% "scalatest" % "2.2.1" % "test"))
 
     lazy val sumosimSwingSettings =
       commonSettings ++

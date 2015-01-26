@@ -10,7 +10,7 @@ import net.entelijan.sumo.robot._
 import net.entelijan.sumo.sound.SoundDesign00
 
 object RotatingVsForwardBackwardApp extends App {
-  val p = new DoctusPanel
+  val p = DoctusComponentFactory.component
   val c = new DoctusCanvasSwing(p)
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
@@ -19,7 +19,7 @@ object RotatingVsForwardBackwardApp extends App {
 }
 
 object CleverVsForwardBackwardApp extends App {
-  val p = new DoctusPanel
+  val p = DoctusComponentFactory.component
   val c = new DoctusCanvasSwing(p)
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
@@ -29,7 +29,7 @@ object CleverVsForwardBackwardApp extends App {
 
 object MultiApp extends App {
   // Create components
-  val doctPanel = new DoctusPanel
+  val doctPanel = DoctusComponentFactory.component
   val ba = new JButton("A")
   val bb = new JButton("B")
   val bc = new JButton("C")
@@ -79,7 +79,7 @@ object MultiApp extends App {
 }
 
 object ManualVsForwardBackwardApp extends App {
-  val p = new DoctusPanel
+  val p = DoctusComponentFactory.component
   val c = new DoctusCanvasSwing(p)
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
@@ -96,7 +96,7 @@ object ManualVsForwardBackwardApp extends App {
 }
 
 object ManualVsStandstillApp extends App {
-  val p = new DoctusPanel
+  val p = DoctusComponentFactory.component
   val c = new DoctusCanvasSwing(p)
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing

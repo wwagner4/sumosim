@@ -7,10 +7,9 @@ import net.entelijan.sumo.robot.{ControlerValue, UpDownLeftRight}
 import org.scalajs.dom
 import org.scalajs.dom.HTMLCanvasElement
 import org.scalajs.dom.extensions.KeyCode
-
 import scala.scalajs.js.annotation.JSExport
 
-@JSExport
+@JSExport(name="ScalajsKeyMain")
 object ScalajsKeyMain {
 
   // Comes here on every refresh (update)
