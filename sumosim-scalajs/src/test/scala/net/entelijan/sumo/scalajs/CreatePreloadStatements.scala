@@ -32,7 +32,7 @@ object CreatePreloadStatements extends App {
   private def createRelPathes(files: List[File], paths: List[String]): List[String] = {
     def createRelPath(file: File): String = {
       val path = file.getCanonicalPath.replace(File.separatorChar, '/')
-      path.substring(path.indexOf("/resources") + 11)
+      "src/main/resources/" + path.substring(path.indexOf("/resources") + 11)
     }
     def isImageFile(f: File): Boolean = {
       f.getName.toLowerCase().endsWith("jpg") ||
