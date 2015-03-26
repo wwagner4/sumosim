@@ -1,17 +1,10 @@
 import sbt._
 import Keys._
 import sbt.Package.ManifestAttributes
-import sbtassembly.Plugin._
 import com.typesafe.sbteclipse.plugin.EclipsePlugin._
 
-import net.virtualvoid.sbt.graph.Plugin._
-
-import com.typesafe.sbteclipse.core.Validation
-import com.typesafe.sbteclipse.plugin.EclipsePlugin.EclipseTransformerFactory
-
-import scala.scalajs.sbtplugin._
-import ScalaJSPlugin._
-import ScalaJSKeys._
+import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 
 object SumosimBuild extends Build {
 
@@ -21,8 +14,8 @@ object SumosimBuild extends Build {
     val version = "1.0-SNAPSHOT"
 
     val scalaMainVersion = "2.11"
-    val scalaVersion = s"$scalaMainVersion.4"
-    val doctusVersion = "1.0.3-SNAPSHOT"
+    val scalaVersion = s"$scalaMainVersion.5"
+    val doctusVersion = "1.0.5-SNAPSHOT"
 
   }
 
@@ -30,7 +23,6 @@ object SumosimBuild extends Build {
   object S {
 
     lazy val commonSettings =
-      graphSettings ++
         Seq(
           version := D.version,
           scalaVersion := D.scalaVersion,
@@ -43,11 +35,9 @@ object SumosimBuild extends Build {
 
     lazy val sumosimSettings =
       commonSettings ++
-        scalaJSBuildSettings  ++
         Seq(
-          libraryDependencies ++= Seq(
-            "net.entelijan" %%% "doctus-core" % D.doctusVersion,
-			"org.scalatest" %% "scalatest" % "2.2.1" % "test"))
+          libraryDependencies += "net.entelijan" %%% "doctus-core" % D.doctusVersion,
+		  libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test")
 
     lazy val sumosimSwingSettings =
       commonSettings ++
@@ -58,38 +48,39 @@ object SumosimBuild extends Build {
 
     lazy val sumosimScalajsSettings =
       sumosimSettings ++
-        scalaJSBuildSettings  ++
         Seq(
-          libraryDependencies += "org.scala-lang.modules.scalajs" %%% "scalajs-dom" % "0.6",
-          libraryDependencies += "org.scala-lang.modules.scalajs" %%% "scalajs-jquery" % "0.6",
+          jsDependencies += RuntimeDOM,
+          libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.8.0",
+          libraryDependencies += "be.doeraene" %%% "scalajs-jquery" % "0.8.0",
           libraryDependencies += "net.entelijan" %%% "doctus-scalajs" % D.doctusVersion)
 
   }
 
   // Project definitions
-  lazy val root = Project(id = "sumosim-pom",
-    base = file("."), //
-    settings = S.sumosimSettings).aggregate(
-      sumosim,
-      sumosimSwing,
-      sumosimScalajs)
+  lazy val root = Project(
+    id = "sumosim-pom",
+    base = file("."), 
+    settings = S.commonSettings)
+	.aggregate(sumosim, sumosimSwing, sumosimScalajs)
 
   lazy val sumosim = Project(
     id = "sumosim",
-    base = file("sumosim"), // 
+    base = file("sumosim"),  
     settings = S.sumosimSettings)
+    .enablePlugins(ScalaJSPlugin)
 
   lazy val sumosimSwing = Project(
     id = "sumosim-swing",
     base = file("sumosim-swing"),
-    settings = S.sumosimSwingSettings //
-    ).dependsOn(sumosim)
+    settings = S.sumosimSwingSettings)
+	.dependsOn(sumosim)
 
   lazy val sumosimScalajs = Project(
     id = "sumosim-scalajs",
     base = file("sumosim-scalajs"),
-    settings = S.sumosimScalajsSettings //
-    ).dependsOn(sumosim)
+    settings = S.sumosimScalajsSettings)
+	.dependsOn(sumosim)
+    .enablePlugins(ScalaJSPlugin)
 
 }
 

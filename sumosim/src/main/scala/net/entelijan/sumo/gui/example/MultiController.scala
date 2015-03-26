@@ -1,33 +1,35 @@
 package net.entelijan.sumo.gui.example
 
 import doctus.core.DoctusScheduler.Stopper
-import doctus.core.{DoctusCanvas, DoctusClickable, DoctusScheduler}
 import net.entelijan.sumo.robot.UpDownLeftRight
+import doctus.core.DoctusActivatable
+import doctus.core.DoctusCanvas
+import doctus.core.DoctusScheduler
 
 /**
  * Controls multiple example simulations
  */
-case class MultiController(a: DoctusClickable, b: DoctusClickable,
-                           c: DoctusClickable, d: DoctusClickable,
+case class MultiController(a: DoctusActivatable, b: DoctusActivatable,
+                           c: DoctusActivatable, d: DoctusActivatable,
                            canv: DoctusCanvas, comp: UpDownLeftRight,
                            sched: DoctusScheduler) {
   
   val ssched = StopperCollectionScheduler(sched)
 
   new CleverVsForwardBackwardExample(canv, None, ssched).start()
-  a.onClick(() => {
+  a.onDeactivated(() => {
     ssched.stopAll()
     new CleverVsCleverExample(canv, None, ssched).start()
   })
-  b.onClick(() => {
+  b.onDeactivated(() => {
     ssched.stopAll()
     new RotatingVsForwardBackwardExample(canv, None, ssched).start()
   })
-  c.onClick(() => {
+  c.onDeactivated(() => {
     ssched.stopAll()
     new ManualVsStandstillExample(canv, comp, None, ssched).start()
   })
-  d.onClick(() => {
+  d.onDeactivated(() => {
     ssched.stopAll()
     new ManualVsForwardBackwardExample(canv, comp, None, ssched).start()
   })
