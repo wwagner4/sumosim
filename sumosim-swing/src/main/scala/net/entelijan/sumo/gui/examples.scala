@@ -1,8 +1,8 @@
 package net.entelijan.sumo.gui
 
 import java.awt.event._
-import java.awt.{Dimension, FlowLayout, BorderLayout}
-import javax.swing.{JFrame, JPanel, JButton}
+import java.awt.{ Dimension, FlowLayout, BorderLayout }
+import javax.swing.{ JFrame, JPanel, JButton }
 import doctus.swing._
 import net.entelijan.sumo.gui.example._
 import net.entelijan.sumo.robot._
@@ -11,6 +11,9 @@ import net.entelijan.sumo.gui.renderer.DefaultImageProviderImpl
 import net.entelijan.sumo.gui.renderer.SumoBlue
 import net.entelijan.sumo.gui.renderer.SumoBlue
 import net.entelijan.sumo.gui.renderer.SumoViolet
+import net.entelijan.sumo.gui.renderer.RoboBlack
+import net.entelijan.sumo.gui.renderer.RoboRed
+import doctus.core.DoctusImage
 
 object RotatingVsForwardBackwardApp extends App {
   val p = DoctusComponentFactory.component
@@ -26,15 +29,17 @@ object CleverVsForwardBackwardApp extends App {
   val c = new DoctusCanvasSwing(p)
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
-  
+
   val ip1 = new SumoBlue {
-    
+    def doctusImage(index: Int): DoctusImage = ???
   }
-  
-  val ip2 = new SumoViolet
-  
-  val bgImage = DoctusImageSwing("")
-  
+  val ip2 = new RoboBlack {
+    def doctusImage(index: Int): DoctusImage = ???
+  }
+  val bgImg = new DoctusImageSwing("???")
+
+  val bgImage = DoctusImageSwing("???")
+
   val ex = new CleverVsForwardBackwardExample(c, Some(sd), sl, ip1, ip2, bgImage)
   new SumoApp(ex, p)
 }
@@ -48,7 +53,6 @@ object MultiApp extends App {
   val bd = new JButton("D")
 
   // Layout components
-
 
   val buttonsPanel = new JPanel()
   buttonsPanel.setLayout(new FlowLayout())
@@ -85,8 +89,10 @@ object MultiApp extends App {
   val cc = DoctusActivatableSwing(bc)
   val cd = DoctusActivatableSwing(bd)
 
+  import ImageProviderSwing._
+
   // Start the controller
-  MultiController(ca, cb, cc, cd, canv, udlr, sl)
+  MultiController(ca, cb, cc, cd, canv, udlr, sl, sumoBlue, sumoViolet, roboRed, roboBlack, background)
 
 }
 
@@ -103,7 +109,9 @@ object ManualVsForwardBackwardApp extends App {
     val right = DoctusActivatableSwingKey(p, KeyEvent.VK_RIGHT)
     UpDownLeftRight(up, down, left, right, sl)
   }
-  val ex = new ManualVsForwardBackwardExample(c, d, Some(sd), sl)
+  import ImageProviderSwing._
+
+  val ex = new ManualVsForwardBackwardExample(c, d, Some(sd), sl, roboRed, roboBlack, background)
   new SumoApp(ex, p)
 }
 
@@ -120,7 +128,10 @@ object ManualVsStandstillApp extends App {
     val right = DoctusActivatableSwingKey(p, KeyEvent.VK_RIGHT)
     UpDownLeftRight(up, down, left, right, sl)
   }
-  val ex = new ManualVsStandstillExample(c, d, Some(sd), sl)
+
+  import ImageProviderSwing._
+
+  val ex = new ManualVsStandstillExample(c, d, Some(sd), sl, roboRed, roboBlack, background)
   new SumoApp(ex, p)
 }
 

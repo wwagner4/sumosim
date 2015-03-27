@@ -2,16 +2,18 @@ package net.entelijan.sumo.scalajs
 
 import doctus.core.DoctusCanvas
 import doctus.scalajs._
-import net.entelijan.sumo.gui.example.{MultiController, ManualVsStandstillExample}
-import net.entelijan.sumo.robot.{ControlerValue, UpDownLeftRight}
+import net.entelijan.sumo.gui.example.{ MultiController, ManualVsStandstillExample }
+import net.entelijan.sumo.robot.{ ControlerValue, UpDownLeftRight }
 import org.scalajs.dom
 import org.scalajs.jquery.jQuery
 import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom.ext.KeyCode
 import org.scalajs.dom.raw.HTMLCanvasElement
 import org.scalajs.dom.raw.HTMLElement
+import net.entelijan.sumo.gui.renderer._
+import doctus.core.DoctusImage
 
-@JSExport(name="ScalajsMultiMain")
+@JSExport(name = "ScalajsMultiMain")
 object ScalajsMultiMain {
 
   // Comes here on every refresh (update)
@@ -34,10 +36,30 @@ object ScalajsMultiMain {
     val dd = DoctusActivatableScalajs(dom.document.getElementById("d").asInstanceOf[HTMLElement])
 
     val d = new UpDownLeftRight(dup, ddown, dleft, dright, dsc)
+
+    import ImageProviderScalajs._
     
-    
-    MultiController(da, db, dc, dd, dcanvas, d, dsc)
+    MultiController(da, db, dc, dd, dcanvas, d, dsc, sumoBlue, sumoViolet, roboRed, roboBlack, background)
   }
 
 }
+
+object ImageProviderScalajs {
+
+  def sumoBlue = new SumoBlue {
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/sumo-blue/img%d.png" format index)
+  }
+  def sumoViolet = new SumoViolet {
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/sumo-violet/img%d.png" format index)
+  }
+  def roboRed = new RoboRed {
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/robo1/img%d.png" format index)
+  }
+  def roboBlack = new RoboBlack {
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/robo2/img%d.png" format index)
+  }
+  val background = new DoctusImageScalajs("robot-2d/bg/pad.png")
+
+}
+
 
