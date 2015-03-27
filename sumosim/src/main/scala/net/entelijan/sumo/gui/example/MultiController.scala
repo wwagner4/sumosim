@@ -5,21 +5,32 @@ import net.entelijan.sumo.robot.UpDownLeftRight
 import doctus.core.DoctusActivatable
 import doctus.core.DoctusCanvas
 import doctus.core.DoctusScheduler
+import net.entelijan.sumo.gui.renderer.ImageProvider
+import doctus.core.DoctusImage
 
 /**
  * Controls multiple example simulations
  */
-case class MultiController(a: DoctusActivatable, b: DoctusActivatable,
-                           c: DoctusActivatable, d: DoctusActivatable,
-                           canv: DoctusCanvas, comp: UpDownLeftRight,
-                           sched: DoctusScheduler) {
-  
+case class MultiController(
+  a: DoctusActivatable,
+  b: DoctusActivatable,
+  c: DoctusActivatable,
+  d: DoctusActivatable,
+  canv: DoctusCanvas,
+  comp: UpDownLeftRight,
+  sched: DoctusScheduler,
+  sumoViolet: ImageProvider,
+  sumoBlue: ImageProvider,
+  robotBlack: ImageProvider,
+  robotRed: ImageProvider,
+  bgImage: DoctusImage) {
+
   val ssched = StopperCollectionScheduler(sched)
 
-  new CleverVsForwardBackwardExample(canv, None, ssched).start()
+  new CleverVsForwardBackwardExample(canv, None, ssched, sumoViolet, sumoBlue, bgImage).start()
   a.onDeactivated(() => {
     ssched.stopAll()
-    new CleverVsCleverExample(canv, None, ssched).start()
+    new CleverVsCleverExample(canv, None, ssched, sumoViolet, sumoBlue, bgImage).start()
   })
   b.onDeactivated(() => {
     ssched.stopAll()
@@ -27,11 +38,11 @@ case class MultiController(a: DoctusActivatable, b: DoctusActivatable,
   })
   c.onDeactivated(() => {
     ssched.stopAll()
-    new ManualVsStandstillExample(canv, comp, None, ssched).start()
+    new ManualVsStandstillExample(canv, comp, None, ssched, robotRed, robotBlack, bgImage).start()
   })
   d.onDeactivated(() => {
     ssched.stopAll()
-    new ManualVsForwardBackwardExample(canv, comp, None, ssched).start()
+    new ManualVsForwardBackwardExample(canv, comp, None, ssched, robotRed, robotBlack, bgImage).start()
   })
 }
 

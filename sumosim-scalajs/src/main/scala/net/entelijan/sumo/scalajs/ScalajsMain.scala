@@ -1,14 +1,14 @@
 package net.entelijan.sumo.scalajs
 
+import scala.scalajs.js.annotation.JSExport
+
+import org.scalajs.dom
+import org.scalajs.dom.raw.HTMLCanvasElement
+import org.scalajs.dom.raw.HTMLDivElement
+
 import doctus.core.DoctusCanvas
-import doctus.core.util.DoctusRectImpl
 import doctus.scalajs._
 import net.entelijan.sumo.gui.example._
-import net.entelijan.sumo.robot.{ControlerValue, UpDownLeftRight}
-import org.scalajs.dom
-import org.scalajs.dom.{HTMLCanvasElement, HTMLDivElement}
-
-import scala.scalajs.js.annotation.JSExport
 
 @JSExport(name="ScalajsMain")
 object ScalajsMain {
@@ -28,11 +28,7 @@ object ScalajsMain {
     // Wrap the javascript components
     val dcanvas: DoctusCanvas = DoctusCanvasScalajs(canvas)
 
-
-    val em = DoctusElementEventManager
-
     new RotatingVsForwardBackwardExample(dcanvas, None, sc).start()
-    // new CleverVsForwardBackwardExample(dcanvas, None, sc).start
   }
 
 }

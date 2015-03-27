@@ -5,9 +5,9 @@ import doctus.scalajs._
 import net.entelijan.sumo.gui.example.ManualVsStandstillExample
 import net.entelijan.sumo.robot.{ControlerValue, UpDownLeftRight}
 import org.scalajs.dom
-import org.scalajs.dom.HTMLCanvasElement
-import org.scalajs.dom.extensions.KeyCode
 import scala.scalajs.js.annotation.JSExport
+import org.scalajs.dom.ext.KeyCode
+import org.scalajs.dom.raw.HTMLCanvasElement
 
 @JSExport(name="ScalajsKeyMain")
 object ScalajsKeyMain {

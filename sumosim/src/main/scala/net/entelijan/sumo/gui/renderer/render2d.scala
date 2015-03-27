@@ -13,6 +13,42 @@ class R2DRobot(xpos: Double, ypos: Double, dir: Double, val imgProv: ImageProvid
   def direction = dir
 }
 
+
+trait OctalImageProvider extends ImageProvider with VecUtil with TrigUtil {
+
+  private lazy val scaledImages = (0 to 7) map (i => inputProvider(i))
+
+  def scale: Double
+
+  def image(direction: Double): Img = {
+    val index: Int = octal(direction)
+    inputProvider(index)
+  }
+
+  protected def inputProvider(index: Int): Img
+}
+
+
+
+trait ImageProviderImpl extends OctalImageProvider {
+  def width: Int
+  def height: Int 
+  def xoff: Double
+  def yoff: Double
+  def scale: Double
+  protected def inputProvider(index: Int): Img = Img(doctusImage(index), width, height, scale)
+  def doctusImage(index: Int): DoctusImage
+}
+
+
+
+abstract class DefaultImageProviderImpl(val width: Int, val height: Int, val xoff: Double, val yoff: Double, val scale: Double) extends ImageProviderImpl
+
+abstract class SumoViolet extends DefaultImageProviderImpl(200, 247, 0.5, 0.68, 1.0)
+abstract class SumoBlue extends DefaultImageProviderImpl(243, 309, 0.5, 0.70, 0.8)
+abstract class RoboBlack extends DefaultImageProviderImpl(150, 146, 0.5, 0.7, 1.0)
+abstract class RoboRed extends DefaultImageProviderImpl(150, 188, 0.5, 0.8, 0.9)
+
 class R2DUniverse(canvas: DoctusCanvas, fillFactor: Double, val provider1: ImageProvider, val provider2: ImageProvider, bgImg: DoctusImage)
   extends RenderUniverse(canvas) {
 
@@ -109,20 +145,6 @@ trait ImageProvider {
    * 1.0 means the turning point is at the bottom line of the image
    */
   def yoff: Double
-}
-
-private trait OctalImageProvider extends ImageProvider with VecUtil with TrigUtil {
-
-  private lazy val scaledImages = (0 to 7) map (i => inputProvider(i))
-
-  def scale: Double
-
-  def image(direction: Double): Img = {
-    val index: Int = octal(direction)
-    inputProvider(index)
-  }
-
-  protected def inputProvider(index: Int): Img
 }
 
 

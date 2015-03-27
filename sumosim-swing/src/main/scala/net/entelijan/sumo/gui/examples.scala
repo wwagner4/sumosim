@@ -3,11 +3,14 @@ package net.entelijan.sumo.gui
 import java.awt.event._
 import java.awt.{Dimension, FlowLayout, BorderLayout}
 import javax.swing.{JFrame, JPanel, JButton}
-
 import doctus.swing._
 import net.entelijan.sumo.gui.example._
 import net.entelijan.sumo.robot._
 import net.entelijan.sumo.sound.SoundDesign00
+import net.entelijan.sumo.gui.renderer.DefaultImageProviderImpl
+import net.entelijan.sumo.gui.renderer.SumoBlue
+import net.entelijan.sumo.gui.renderer.SumoBlue
+import net.entelijan.sumo.gui.renderer.SumoViolet
 
 object RotatingVsForwardBackwardApp extends App {
   val p = DoctusComponentFactory.component
@@ -23,7 +26,16 @@ object CleverVsForwardBackwardApp extends App {
   val c = new DoctusCanvasSwing(p)
   val sd = new SoundDesign00
   val sl = DoctusSchedulerSwing
-  val ex = new CleverVsForwardBackwardExample(c, Some(sd), sl)
+  
+  val ip1 = new SumoBlue {
+    
+  }
+  
+  val ip2 = new SumoViolet
+  
+  val bgImage = DoctusImageSwing("")
+  
+  val ex = new CleverVsForwardBackwardExample(c, Some(sd), sl, ip1, ip2, bgImage)
   new SumoApp(ex, p)
 }
 
@@ -68,10 +80,10 @@ object MultiApp extends App {
     val right = DoctusActivatableSwingKey(doctPanel, KeyEvent.VK_RIGHT)
     UpDownLeftRight(up, down, left, right, sl)
   }
-  val ca = DoctusClickableSwing(ba)
-  val cb = DoctusClickableSwing(bb)
-  val cc = DoctusClickableSwing(bc)
-  val cd = DoctusClickableSwing(bd)
+  val ca = DoctusActivatableSwing(ba)
+  val cb = DoctusActivatableSwing(bb)
+  val cc = DoctusActivatableSwing(bc)
+  val cd = DoctusActivatableSwing(bd)
 
   // Start the controller
   MultiController(ca, cb, cc, cd, canv, udlr, sl)

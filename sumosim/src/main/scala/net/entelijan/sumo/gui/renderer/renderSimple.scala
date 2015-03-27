@@ -4,6 +4,8 @@ import net.entelijan.sumo.commons._
 import net.entelijan.util._
 import doctus.core._
 import doctus.core.color._
+import doctus.core.util.DoctusPoint
+import doctus.core.util.DoctusVector
 
 case class AffinePoliPoint(x: Double, y: Double) extends DoctusPoint {
   import scala.math._
@@ -15,6 +17,12 @@ case class AffinePoliPoint(x: Double, y: Double) extends DoctusPoint {
     val a1 = angle + a0
     AffinePoliPoint((r * cos(a1)).toInt, (r * sin(a1)).toInt)
   }
+  
+  // The following method should not be used
+  def +(v: DoctusVector): DoctusPoint = ???
+  def -(v: DoctusVector): DoctusPoint = ???
+  def -(v: DoctusPoint): DoctusVector = ???
+
 }
 
 object SimpleUniverse {
@@ -75,8 +83,8 @@ class SimpleUniverse(canvas: DoctusCanvas, color1: DoctusColor, color2: DoctusCo
         val fieldColor = new DoctusColorRgb(73, 135, 89)
 
         def drawBackground() {
-          g.setColor(backColor)
-          g.fillRect(0, 0, canvasWidth, canvasHeight)
+          g.fill(backColor, 255)
+          g.rect(0, 0, canvasWidth, canvasHeight)
           val mw = min(canvasWidth, canvasHeight)
           val padding = (mw * fieldPadding).toInt
           val ow = mw - padding * 2
@@ -84,17 +92,17 @@ class SimpleUniverse(canvas: DoctusCanvas, color1: DoctusColor, color2: DoctusCo
           if (mw == canvasWidth) {
             val ox = (padding + ow / 2.0).toInt
             val oy = (padding + (canvasHeight - mw) / 2.0 + ow / 2.0).toInt
-            g.setColor(fieldColor)
-            g.fillOval(ox, oy, or, or)
-            g.setColor(DoctusColorBlack)
-            g.drawOval(ox, oy, or, or)
+            g.fill(fieldColor, 255)
+            g.ellipse(ox, oy, or, or)
+            g.fill(DoctusColorBlack, 255)
+            g.ellipse(ox, oy, or, or)
           } else {
             val ox = (padding + (canvasWidth - mw) / 2.0  + ow / 2.0).toInt
             val oy = (padding  + ow / 2.0).toInt
-            g.setColor(fieldColor)
-            g.fillOval(ox, oy, or, or)
-            g.setColor(DoctusColorBlack)
-            g.drawOval(ox, oy, or, or)
+            g.fill(fieldColor, 255)
+            g.ellipse(ox, oy, or, or)
+            g.fill(DoctusColorBlack, 255)
+            g.ellipse(ox, oy, or, or)
           }
         }
         def drawRobot(robot: SimpleUniverseRobot) {
@@ -114,10 +122,9 @@ class SimpleUniverse(canvas: DoctusCanvas, color1: DoctusColor, color2: DoctusCo
               AffinePoliPoint(size, 0))
           }
           val rect: List[DoctusPoint] = transformShape(rectBase, robot)
-          g.setColor(robot.color)
-          g.fillPoli(rect)
-          g.setColor(DoctusColorBlack)
-          g.drawPoli(rect)
+          g.fill(robot.color, 255)
+          g.stroke(DoctusColorBlack, 255)
+          g.poli(rect)
 
           val arrowBase = {
             val shape = List(
@@ -130,14 +137,14 @@ class SimpleUniverse(canvas: DoctusCanvas, color1: DoctusColor, color2: DoctusCo
             shape.map(p => p.scale(sf, sf))
           }
           val arrow = transformShape(arrowBase, robot)
-          g.drawPoli(arrow)
+          g.poli(arrow)
 
         }
 
         drawBackground()
         robots.foreach(r => drawRobot(r))
-        g.setColor(DoctusColorBlack)
-        g.drawString(info, 10, 20)
+        g.fill(DoctusColorBlack, 255)
+        g.text(info, 10, 20, 0)
       })
 
 }

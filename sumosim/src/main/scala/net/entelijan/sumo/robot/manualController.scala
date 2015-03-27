@@ -92,28 +92,28 @@ class ManualController(val name: String, comp: UpDownLeftRight) extends DiffDriv
 
   val dbg = false
 
-  comp.leftControlerValue.activatable.onActivated { (None) =>
+  comp.leftControlerValue.activatable.onActivated { () =>
     if (dbg) println("## l +")
     leftKeyListener.startIncreaseValue() }
-  comp.leftControlerValue.activatable.onDeactivated { (None) =>
+  comp.leftControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## l -")
     leftKeyListener.startDecreaseValue() }
-  comp.rightControlerValue.activatable.onActivated { (None) =>
+  comp.rightControlerValue.activatable.onActivated { () =>
     if (dbg) println("## r +")
     rightKeyListener.startIncreaseValue() }
-  comp.rightControlerValue.activatable.onDeactivated { (None) =>
+  comp.rightControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## r -")
     rightKeyListener.startDecreaseValue() }
-  comp.upControlerValue.activatable.onActivated { (None) =>
+  comp.upControlerValue.activatable.onActivated { () =>
     if (dbg) println("## f +")
     forwKeyListener.startIncreaseValue() }
-  comp.upControlerValue.activatable.onDeactivated { (None) =>
+  comp.upControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## f -")
     forwKeyListener.startDecreaseValue() }
-  comp.downControlerValue.activatable.onActivated { (None) =>
+  comp.downControlerValue.activatable.onActivated { () =>
     if (dbg) println("## b +")
     backwKeyListener.startIncreaseValue() }
-  comp.downControlerValue.activatable.onDeactivated { (None) =>
+  comp.downControlerValue.activatable.onDeactivated { () =>
     if (dbg) println("## b -")
     backwKeyListener.startDecreaseValue() }
 
