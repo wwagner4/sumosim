@@ -1,9 +1,10 @@
 <!--suppress ALL -->
 <project name="sumosim-main">
+	
 	<property file="build.properties"/>
-	<property name="mhome" value="../sumosim2-mobile" />
+	<property name="mhome" value="/Users/wwagner4/tmp" />
 
-	<target name="toMobile">
+	<target name="deploy">
 		<exec executable="${sbt}" failonerror="true">
 			<arg line="-Dsbt.log.noformat=true fullOptJS"/>
 		</exec>
@@ -39,12 +40,6 @@
 	<target name="eclipse">
 		<exec executable="${sbt}" failonerror="true">
 			<arg line="-Dsbt.log.noformat=true eclipse"/>
-		</exec>
-	</target>
-	
-	<target name="idea">
-		<exec executable="${sbt}" failonerror="true">
-			<arg line="-Dsbt.log.noformat=true genIda"/>
 		</exec>
 	</target>
 	
