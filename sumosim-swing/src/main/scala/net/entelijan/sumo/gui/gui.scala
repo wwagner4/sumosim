@@ -31,10 +31,10 @@ object ImageProviderSwing {
     def doctusImage(index: Int): DoctusImage = DoctusImageSwing("robot-2d/sumo-violet/img%d.png" format index)
   }
   def roboRed = new RoboRed {
-    def doctusImage(index: Int): DoctusImage = DoctusImageSwing("robot-2d/robo1/img%d.png" format index)
+    def doctusImage(index: Int): DoctusImage = DoctusImageSwing("robot-2d/robo2/img%d.png" format index)
   }
   def roboBlack = new RoboBlack {
-    def doctusImage(index: Int): DoctusImage = DoctusImageSwing("robot-2d/robo2/img%d.png" format index)
+    def doctusImage(index: Int): DoctusImage = DoctusImageSwing("robot-2d/robo1/img%d.png" format index)
   }
   val background = new DoctusImageSwing("robot-2d/bg/pad.png")
 

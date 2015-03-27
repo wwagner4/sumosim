@@ -100,8 +100,8 @@ class SimpleUniverse(canvas: DoctusCanvas, color1: DoctusColor, color2: DoctusCo
             val ox = (padding + (canvasWidth - mw) / 2.0  + ow / 2.0).toInt
             val oy = (padding  + ow / 2.0).toInt
             g.fill(fieldColor, 255)
-            g.ellipse(ox, oy, or, or)
-            g.fill(DoctusColorBlack, 255)
+            g.stroke(DoctusColorBlack, 255)
+            g.strokeWeight(1)
             g.ellipse(ox, oy, or, or)
           }
         }

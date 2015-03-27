@@ -46,19 +46,19 @@ object ScalajsMultiMain {
 
 object ImageProviderScalajs {
 
-  def sumoBlue = new SumoBlue {
-    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/sumo-blue/img%d.png" format index)
+  def sumoBlue = new SumoBlue {                   
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("target/scala-2.11/classes/robot-2d/sumo-blue/img%d.png" format index)
   }
   def sumoViolet = new SumoViolet {
-    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/sumo-violet/img%d.png" format index)
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("target/scala-2.11/classes/robot-2d/sumo-violet/img%d.png" format index)
   }
   def roboRed = new RoboRed {
-    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/robo1/img%d.png" format index)
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("target/scala-2.11/classes/robot-2d/robo2/img%d.png" format index)
   }
-  def roboBlack = new RoboBlack {
-    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("robot-2d/robo2/img%d.png" format index)
+  def roboBlack = new RoboBlack {                                  
+    def doctusImage(index: Int): DoctusImage = DoctusImageScalajs("target/scala-2.11/classes/robot-2d/robo1/img%d.png" format index)
   }
-  val background = new DoctusImageScalajs("robot-2d/bg/pad.png")
+  val background = new DoctusImageScalajs("target/scala-2.11/classes/robot-2d/bg/pad.png")
 
 }
 

@@ -116,6 +116,7 @@ class R2DUniverse(canvas: DoctusCanvas, fillFactor: Double, val provider1: Image
     paintBackground()
     sortRobots.foreach(r => paintRobot(r))
     g.fill(DoctusColorWhite, 255)
+    g.textSize(22)
     g.text(info, DoctusPoint(10, 30), 0)
 
   })
