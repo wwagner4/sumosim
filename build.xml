@@ -2,7 +2,7 @@
 <project name="sumosim-main">
 	
 	<property file="build.properties"/>
-	<property name="mhome" value="/Users/wwagner4/tmp" />
+	<property name="mhome" value="/Users/wwagner4/prj/html/entelijan-homepage/sumo-sim" />
 
 	<target name="deploy">
 		<exec executable="${sbt}" failonerror="true">
@@ -10,8 +10,7 @@
 		</exec>
 		<copy todir="${mhome}" verbose="true" overwrite="true">
 			<fileset dir="sumosim-scalajs">
-				<include name="src/main/resources/**/*"/>
-				<include name="target/scala-2.10/*-opt.js"/>
+				<include name="target/scala-2.11/**/*"/>
 			</fileset>
 		</copy>
 		<copy todir="${mhome}" verbose="true">
@@ -19,7 +18,7 @@
 				<include name="js/**/*"/>
 			</fileset>
 		</copy>
-		<copy tofile="${mhome}/index.html" file="sumosim-scalajs/index.html" verbose="true">
+		<copy tofile="${mhome}/index.html" file="sumosim-scalajs/index-hp.html" verbose="true">
 		</copy>
         <replace file="${mhome}/index.html" token="fastopt.js" value="opt.js"/>
 

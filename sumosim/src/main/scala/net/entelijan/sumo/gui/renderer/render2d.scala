@@ -7,6 +7,7 @@ import doctus.core.DoctusGraphics
 import doctus.core.color._
 import doctus.core.DoctusImage
 import doctus.core.util.DoctusPoint
+import doctus.core.text.DoctusFontMonospace
 
 class R2DRobot(xpos: Double, ypos: Double, dir: Double, val imgProv: ImageProvider) {
   def pos = new Point2(xpos, ypos)
@@ -116,7 +117,8 @@ class R2DUniverse(canvas: DoctusCanvas, fillFactor: Double, val provider1: Image
     paintBackground()
     sortRobots.foreach(r => paintRobot(r))
     g.fill(DoctusColorWhite, 255)
-    g.textSize(22)
+    g.textSize(16)
+    g.textFont(DoctusFontMonospace)
     g.text(info, DoctusPoint(10, 30), 0)
 
   })
